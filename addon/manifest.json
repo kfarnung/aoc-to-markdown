@@ -1,0 +1,26 @@
+{
+    "manifest_version": 2,
+    "name": "Advent of Code to Markdown",
+    "version": "1.0.2",
+    "description": "Converts a given Advent of Code page to a GitHub-compatible Markdown file.",
+    "icons": {
+        "32": "icons/aoc-to-markdown.svg"
+    },
+    "page_action": {
+        "default_icon": "icons/aoc-to-markdown.svg",
+        "default_title": "Advent of Code to Markdown"
+    },
+    "background": {
+        "scripts": ["background_scripts/index.js"]
+    },
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "downloads"
+    ],
+    "applications": {
+        "gecko": {
+            "id": "{9255ec71-5fba-48c8-9d40-0ae6ef3d6fb3}"
+        }
+    }
+}
