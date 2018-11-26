@@ -44,6 +44,7 @@ const turndownService = new TurndownService({
     headingStyle: 'atx'
 });
 turndownService.use(gfm);
+turndownService.keep(['span']);
 
 const markdown = turndownService.turndown(newDoc).concat('\n');
 

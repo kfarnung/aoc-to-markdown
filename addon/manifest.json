@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Advent of Code to Markdown",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Converts a given Advent of Code page to a GitHub-compatible Markdown file.",
     "icons": {
         "32": "icons/aoc-to-markdown.svg"
