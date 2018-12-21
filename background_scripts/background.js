@@ -1,3 +1,5 @@
+const browser = require("webextension-polyfill");
+
 function urlIsApplicable(url) {
     const regex = /^https:\/\/adventofcode.com\/\d{4}\/day\/\d{1,2}/;
     return regex.test(url);

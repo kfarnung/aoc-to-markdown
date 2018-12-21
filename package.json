@@ -11,6 +11,7 @@
   "license": "MIT",
   "devDependencies": {
     "eslint": "^5.9.0",
+    "webextension-polyfill": "^0.3.1",
     "webpack": "^2.3.2"
   },
   "dependencies": {
