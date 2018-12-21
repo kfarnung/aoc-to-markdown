@@ -1,3 +1,4 @@
+const browser = require("webextension-polyfill");
 const gfm = require('turndown-plugin-gfm').gfm;
 const TurndownService = require('turndown').default;
 
