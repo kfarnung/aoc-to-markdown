@@ -14,8 +14,9 @@ const titleElement = document.createElement('h1');
 newDoc.appendChild(titleElement);
 
 const link = document.createElement('a');
-link.href = window.location.href;
-link.innerText = window.location.href;
+const href = window.location.origin + window.location.pathname
+link.href = href;
+link.innerText = href;
 newDoc.appendChild(link);
 
 const descriptionHeader = document.createElement('h2');
