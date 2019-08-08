@@ -10,13 +10,13 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^5.11.1",
-    "webextension-polyfill": "^0.3.1",
-    "webpack": "^4.28.2",
-    "webpack-cli": "^3.1.2"
+    "eslint": "^6.1.0",
+    "webextension-polyfill": "^0.4.0",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6"
   },
   "dependencies": {
-    "turndown": "^5.0.1",
+    "turndown": "^5.0.3",
     "turndown-plugin-gfm": "^1.0.2"
   }
 }
