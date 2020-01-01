@@ -3,14 +3,15 @@
   "version": "1.0.6",
   "description": "Converts a given Advent of Code page to a GitHub-compatible Markdown file.",
   "scripts": {
-    "build": "webpack",
-    "lint": "eslint .",
+    "build": "webpack && web-ext build -s addon --overwrite-dest",
+    "lint": "eslint . && web-ext lint -s addon",
     "lint-fix": "eslint . --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
   "devDependencies": {
     "eslint": "^6.8.0",
+    "web-ext": "^4.0.0",
     "webextension-polyfill": "^0.6.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
