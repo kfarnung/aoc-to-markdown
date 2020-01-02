@@ -4,7 +4,13 @@ GitHub-compatible Markdown file.
 
 ## Installing
 
+### Firefox
+
 Binaries are available on the [Releases](https://github.com/kfarnung/aoc-to-markdown/releases) page.
+
+### Chrome
+
+The extension must be side-loaded using developer mode.
 
 ## Building
 
