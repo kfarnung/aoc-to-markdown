@@ -16,6 +16,22 @@ as appropriate.
 
 ## Testing
 
-- `npm install --global web-ext`
-- `cd addon/`
-- `web-ext run`
+### Firefox
+
+- `npm start`
+
+### Chrome
+
+Enable developer mode and load the `addon` folder as an unpacked extension.
+
+## Packaging/Signing
+
+### Firefox
+
+- Find your developer API key: https://addons.mozilla.org/en-US/developers/addon/api/key/
+- Set the required environment variables:
+  ```
+  export AMO_JWT_ISSUER=<issuer>
+  export AMO_JWT_SECRET=<secret>
+  ```
+- `npm run sign`
