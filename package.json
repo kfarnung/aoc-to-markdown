@@ -7,6 +7,7 @@
     "lint": "eslint . && web-ext lint -s addon",
     "lint-fix": "eslint . --fix",
     "start": "web-ext run -s addon",
+    "sign": "web-ext sign -s addon --api-key=$AMO_JWT_ISSUER --api-secret=$AMO_JWT_SECRET",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
