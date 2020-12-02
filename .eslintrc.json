@@ -4,5 +4,8 @@
     "es6": true,
     "amd": true,
     "webextensions": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
   }
 }
