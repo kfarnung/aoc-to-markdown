@@ -1,13 +1,12 @@
 {
   "name": "aoc-to-markdown",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Converts a given Advent of Code page to a GitHub-compatible Markdown file.",
   "scripts": {
     "build": "webpack && web-ext build -s addon --overwrite-dest",
     "lint": "eslint . && web-ext lint -s addon",
     "lint-fix": "eslint . --fix",
     "start": "npm run build && web-ext run -s addon",
-    "sign": "web-ext sign -s addon --api-key=$AMO_JWT_ISSUER --api-secret=$AMO_JWT_SECRET",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
