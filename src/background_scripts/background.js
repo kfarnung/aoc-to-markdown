@@ -19,7 +19,7 @@ runtime.onMessage.addListener((data, sender) => {
   switch (data.action) {
     case "saveAs":
       saveAs(data.text).catch((err) => {
-        console.error('Failed to save content', err);
+        console.error("Failed to save content", err);
       });
       break;
 
