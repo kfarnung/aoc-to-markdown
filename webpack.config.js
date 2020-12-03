@@ -3,10 +3,10 @@ const path = require("path");
 module.exports = {
   mode: "production",
   entry: {
-    background_scripts: ["./background_scripts/background.js"],
+    background_scripts: ["./src/background_scripts/background.js"],
     content_scripts: [
-      "./content_scripts/on-loaded.js",
-      "./content_scripts/to-markdown.js",
+      "./src/content_scripts/on-loaded.js",
+      "./src/content_scripts/to-markdown.js",
     ],
   },
   output: {

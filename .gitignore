@@ -62,5 +62,6 @@ typings/
 
 # Build output
 /addon/**/*.js
+/addon/manifest.json
 web-ext-artifacts/
 .web-extension-id
