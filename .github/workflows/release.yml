@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14.x
       - run: npm ci
       - run: npm run lint
       - run: npm run build
@@ -34,5 +34,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./web-ext-artifacts/aoc-to-markdown.zip
-          asset_name: aoc-to-markdown-${{ github.ref }}.zip
+          asset_name: aoc-to-markdown-addon-${{ github.ref }}.zip
           asset_content_type: application/zip
