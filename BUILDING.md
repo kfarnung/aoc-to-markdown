@@ -5,7 +5,7 @@
 - Install [Node 14](https://nodejs.org/en/download/)
 
 ## Build
- 
+
 - Run `npm install`
 - Run `npm run build`
 
