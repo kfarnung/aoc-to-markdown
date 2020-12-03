@@ -3,10 +3,14 @@
   "version": "1.0.11",
   "description": "Converts a given Advent of Code page to a GitHub-compatible Markdown file.",
   "scripts": {
-    "build": "webpack && web-ext build -s addon --overwrite-dest",
+    "build": "npm run compile && web-ext build -s addon --overwrite-dest",
+    "compile": "webpack",
     "lint": "eslint . && web-ext lint -s addon",
     "lint-fix": "eslint . --fix",
-    "start": "npm run build && web-ext run -s addon",
+    "prepare": "npm run compile",
+    "prestart": "npm run compile",
+    "pretest": "npm run compile",
+    "start": "web-ext run -s addon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
