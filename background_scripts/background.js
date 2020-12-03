@@ -1,47 +1,45 @@
-const browser = require("webextension-polyfill");
+import {
+  downloads,
+  runtime,
+  pageAction,
+  tabs as _tabs,
+} from "webextension-polyfill";
 
-function urlIsApplicable(url) {
-    const regex = /^https:\/\/adventofcode.com\/\d{4}\/day\/\d{1,2}/;
-    return regex.test(url);
+function saveAs(text) {
+  const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+
+  return downloads.download({
+    url: URL.createObjectURL(blob),
+    filename: "README.md",
+    saveAs: true,
+  });
 }
 
-function initializePageAction(tab) {
-    if (urlIsApplicable(tab.url)) {
-        browser.pageAction.show(tab.id);
-    } else {
-        browser.pageAction.hide(tab.id);
-    }
-}
+runtime.onMessage.addListener((data, sender) => {
+  switch (data.action) {
+    case "saveAs":
+      saveAs(data.text).catch((err) => {
+        console.error('Failed to save content', err);
+      });
+      break;
 
-browser.tabs.onUpdated.addListener((id, changeInfo, tab) => {
-    initializePageAction(tab);
+    case "showPageAction":
+      pageAction.show(sender.tab.id);
+      break;
+
+    default:
+      console.warn("Unknown action", data.action);
+      break;
+  }
 });
 
-browser.runtime.onMessage.addListener((message) => {
-    if (message.action === "saveAs") {
-        const blob = new Blob([message.text], { type: "text/markdown;charset=utf-8" });
-
-        browser.downloads.download({
-            url: URL.createObjectURL(blob),
-            filename: "README.md",
-            saveAs: true,
-        }).catch((e) => {
-            console.error(e);
-        });
-    } else {
-        console.warn(`Unknown action: ${message.action}`);
-    }
-});
-
-browser.pageAction.onClicked.addListener(() => {
-    browser.tabs.executeScript({file: "/content_scripts/index.js"})
-        .catch((e) => {
-            console.error(e);
-        });
-});
-
-browser.tabs.query({}).then((tabs) => {
-    for (const tab of tabs) {
-        initializePageAction(tab);
-    }
+pageAction.onClicked.addListener(() => {
+  _tabs
+    .query({ active: true, currentWindow: true })
+    .then((tabs) => {
+      return _tabs.sendMessage(tabs[0].id, { action: "capturePage" });
+    })
+    .catch((e) => {
+      console.error("Failed to send 'capturePage' message", e);
+    });
 });
