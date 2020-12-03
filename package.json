@@ -1,6 +1,6 @@
 {
   "name": "aoc-to-markdown",
-  "version": "1.0.11",
+  "version": "1.1.0",
   "description": "Converts a given Advent of Code page to a GitHub-compatible Markdown file.",
   "scripts": {
     "build": "npm run compile && web-ext build -n aoc-to-markdown.zip -s addon --overwrite-dest",
