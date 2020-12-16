@@ -14,8 +14,6 @@ function stripHyphens(str) {
 
 function generateMarkdown(doc) {
   const turndownService = new TurndownService({
-    bulletListMarker: "-",
-    codeBlockStyle: "fenced",
     headingStyle: "atx",
   });
 
