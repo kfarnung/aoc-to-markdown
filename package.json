@@ -17,10 +17,10 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^7.14.0",
-    "web-ext": "^5.4.0",
+    "eslint": "^7.15.0",
+    "web-ext": "^5.4.1",
     "webextension-polyfill": "^0.7.0",
-    "webpack": "^5.9.0",
+    "webpack": "^5.10.3",
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
