@@ -2,6 +2,7 @@
   "name": "aoc-to-markdown",
   "version": "1.1.0",
   "description": "Converts a given Advent of Code page to a GitHub-compatible Markdown file.",
+  "repository": "github:kfarnung/aoc-to-markdown",
   "scripts": {
     "build": "npm run compile && web-ext build -n aoc-to-markdown-addon.zip -s addon --overwrite-dest",
     "compile": "npm run genmanifest && webpack",
@@ -17,7 +18,12 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/download": "^6.2.4",
+    "body-parser": "^1.19.0",
+    "download": "^8.0.0",
     "eslint": "^7.15.0",
+    "express": "^4.17.1",
+    "safe-compare": "^1.1.4",
     "web-ext": "^5.4.1",
     "webextension-polyfill": "^0.7.0",
     "webpack": "^5.10.3",
