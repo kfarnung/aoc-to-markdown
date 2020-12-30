@@ -43,6 +43,17 @@ function generateMarkdown(doc) {
   return turndownService.turndown(doc).concat("\n");
 }
 
+function expandHrefs(article) {
+  const articleLinks = article.querySelectorAll("a");
+  for (const link of articleLinks) {
+    if (link.href) {
+      // Reading the `href` seems to expand it, setting it back will make it
+      // permanent.
+      link.href = link.href
+    }
+  }
+}
+
 function capturePage() {
   const newDoc = document.createDocumentFragment();
   const titleElement = document.createElement("h1");
@@ -62,6 +73,7 @@ function capturePage() {
   const articleElementsLength = articleElements.length;
   for (let index = 0; index < articleElementsLength; ++index) {
     const article = articleElements[index].cloneNode(true);
+
     const headingElement = article.querySelector("h2");
     let heading = stripHyphens(headingElement.innerText);
 
@@ -74,6 +86,7 @@ function capturePage() {
     newHeadingElement.innerText = heading;
     headingElement.replaceWith(newHeadingElement);
 
+    expandHrefs(article);
     newDoc.appendChild(article);
   }
 
