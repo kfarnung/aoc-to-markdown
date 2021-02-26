@@ -5,13 +5,17 @@ GitHub-compatible Markdown file.
 
 ## Install
 
+### Edge
+
+Install from [Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/advent-of-code-to-markdow/deadbipfmnjnhepbnpdkmkhakgfejpol).
+
+### Chrome
+
+Install from the [Chrome Web Store](https://chrome.google.com/webstore/detail/advent-of-code-to-markdow/bhhioamnpnhgcakbdnkgmnjjbjolfjmj).
+
 ### Firefox
 
 Install from [Add-ons for Firefox](https://addons.mozilla.org/en-US/firefox/addon/aoc-to-markdown/).
-
-### Chrome/Edge
-
-Install from the [Chrome Web Store](https://chrome.google.com/webstore/detail/advent-of-code-to-markdow/bhhioamnpnhgcakbdnkgmnjjbjolfjmj).
 
 ## Build
 
