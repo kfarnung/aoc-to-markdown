@@ -21,10 +21,16 @@ function generateMarkdown(doc) {
   // and generates files that render well on GitHub.
   turndownService.use(gfm);
 
-  // Special handling for emphasized code blocks (e.g.
-  // `<code><em>1234<em></code>`). The default results in the underscores being
-  // rendered (e.g. `_1234_`), but by inverting the tags it will emphasize the
-  // code in the block (e.g. _`1234`_).
+  // Special handling for emphasized code blocks.
+  //
+  // ```html
+  // <code><em>1234<em></code>
+  // ```
+  //
+  // The default results in the underscores being rendered within the code
+  // block. Since the entire code block should be emphasized a simple solution
+  // is to just move the emphasis outside the block which appears to create the
+  // correct result (on GitHub at least).
   turndownService.addRule("emphasizedCode", {
     filter: (node) =>
       node.nodeName == "CODE" &&
@@ -34,6 +40,26 @@ function generateMarkdown(doc) {
       node.firstChild.firstChild.nodeType == Node.TEXT_NODE,
     replacement: (_content, node, options) =>
       `${options.emDelimiter}\`${node.innerText}\`${options.emDelimiter}`,
+  });
+
+  // Special handling for emphasized text within code blocks.
+  //
+  // ```html
+  // <code>1 + 1 = <em>2</em></code>
+  // ```
+  // 
+  // The default rendering results in the underscores being rendered, as there
+  // isn't a proper way to render emphasis within code blocks without resorting
+  // to HTML again. In this case the best solution is to drop the emphasis
+  // completely, rendering the content without any markup.
+  //
+  // Since the rules are applied in order this should only consider instances
+  // where the previous code did not make a modification.
+  turndownService.addRule("emphasisWithinCode", {
+    filter: (node) =>
+      node.nodeName == "EM" &&
+      node.parentNode.nodeName == "CODE",
+    replacement: (content) => content,
   });
 
   // Keep the spans which are used for alternate text in the puzzle description.
