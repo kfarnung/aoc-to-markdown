@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Advent of Code to Markdown",
   "version": null,
   "description": "Converts a given Advent of Code page to a GitHub-compatible Markdown file.",
@@ -10,7 +10,7 @@
     "128": "icons/aoc-to-markdown-128.png"
   },
   "background": {
-    "scripts": ["background_scripts/index.js"]
+    "service_worker": "background_scripts/index.js"
   },
   "content_scripts": [
     {
@@ -18,7 +18,7 @@
       "matches": ["*://adventofcode.com/*/day/*"]
     }
   ],
-  "page_action": {
+  "action": {
     "default_icon": {
       "16": "icons/aoc-to-markdown-16.png",
       "32": "icons/aoc-to-markdown-32.png",

@@ -1,13 +1,13 @@
 import {
+  action,
   runtime,
-  pageAction,
   tabs as _tabs,
 } from "webextension-polyfill";
 
 runtime.onMessage.addListener((data, sender) => {
   switch (data.action) {
     case "showPageAction":
-      pageAction.show(sender.tab.id);
+      action.enable(sender.tab.id);
       break;
 
     default:
@@ -16,7 +16,11 @@ runtime.onMessage.addListener((data, sender) => {
   }
 });
 
-pageAction.onClicked.addListener(() => {
+runtime.onInstalled.addListener(() => {
+  action.disable();
+});
+
+action.onClicked.addListener(() => {
   _tabs
     .query({ active: true, currentWindow: true })
     .then((tabs) => {
