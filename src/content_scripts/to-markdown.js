@@ -47,7 +47,7 @@ function generateMarkdown(doc) {
   // ```html
   // <code>1 + 1 = <em>2</em></code>
   // ```
-  // 
+  //
   // The default rendering results in the underscores being rendered, as there
   // isn't a proper way to render emphasis within code blocks without resorting
   // to HTML again. In this case the best solution is to drop the emphasis
@@ -57,8 +57,7 @@ function generateMarkdown(doc) {
   // where the previous code did not make a modification.
   turndownService.addRule("emphasisWithinCode", {
     filter: (node) =>
-      node.nodeName == "EM" &&
-      node.parentNode.nodeName == "CODE",
+      node.nodeName == "EM" && node.parentNode.nodeName == "CODE",
     replacement: (content) => content,
   });
 
@@ -75,7 +74,7 @@ function expandHrefs(article) {
     if (link.href) {
       // Reading the `href` seems to expand it, setting it back will make it
       // permanent.
-      link.href = link.href
+      link.href = link.href;
     }
   }
 }
