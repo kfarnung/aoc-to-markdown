@@ -116,17 +116,20 @@ function capturePage() {
     newDoc.appendChild(article);
   }
 
-  return generateMarkdown(newDoc);
+  const text = generateMarkdown(newDoc);
+  const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+  return URL.createObjectURL(blob);
 }
 
 runtime.onMessage.addListener((data) => {
   if (data.action === "capturePage") {
-    const markdown = capturePage();
+    const url = capturePage();
     return runtime
       .sendMessage({
         action: "saveAs",
-        text: markdown,
+        text: url,
       })
+      .then(() => URL.revokeObjectURL(markdown))
       .catch((err) => console.error("Failed to send 'saveAs' message", err));
   }
 });

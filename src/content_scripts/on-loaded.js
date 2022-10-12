@@ -1,5 +1,7 @@
 import { runtime } from "webextension-polyfill";
 
+console.log("Loaded!");
+
 runtime
   .sendMessage({
     action: "showPageAction",

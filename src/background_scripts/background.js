@@ -1,19 +1,21 @@
 import {
+  action,
   downloads,
   runtime,
-  pageAction,
   tabs as _tabs,
 } from "webextension-polyfill";
 
-function saveAs(text) {
-  const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
-
+function saveAs(url) {
   return downloads.download({
-    url: URL.createObjectURL(blob),
+    url,
     filename: "README.md",
     saveAs: true,
   });
 }
+
+runtime.onInstalled.addListener(() => {
+  action.disable();
+});
 
 runtime.onMessage.addListener((data, sender) => {
   switch (data.action) {
@@ -24,7 +26,7 @@ runtime.onMessage.addListener((data, sender) => {
       break;
 
     case "showPageAction":
-      pageAction.show(sender.tab.id);
+      action.enable(sender.tab.id);
       break;
 
     default:
@@ -33,7 +35,7 @@ runtime.onMessage.addListener((data, sender) => {
   }
 });
 
-pageAction.onClicked.addListener(() => {
+action.onClicked.addListener(() => {
   _tabs
     .query({ active: true, currentWindow: true })
     .then((tabs) => {

@@ -13,4 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, "addon"),
     filename: "[name]/index.js",
   },
+  optimization: {
+    minimize: false,
+  },
 };
