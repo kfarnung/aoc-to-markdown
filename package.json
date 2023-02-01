@@ -18,13 +18,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/download": "^8.0.1",
-    "acorn": "^8.5.0",
-    "body-parser": "^1.20.0",
-    "download": "^8.0.0",
     "eslint": "^8.4.0",
-    "express": "^4.17.3",
-    "safe-compare": "^1.1.4",
     "web-ext": "^7.4.0",
     "webextension-polyfill": "^0.10.0",
     "webpack": "^5.53.0",
