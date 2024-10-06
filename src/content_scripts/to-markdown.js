@@ -79,6 +79,16 @@ function expandHrefs(article) {
   }
 }
 
+function downloadBlob(blob) {
+  const downloadLink = document.createElement('a');
+  downloadLink.href = URL.createObjectURL(blob);
+  downloadLink.download = 'README.md';
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+  URL.revokeObjectURL(downloadLink.href);
+}
+
 function capturePage() {
   const newDoc = document.createDocumentFragment();
   const titleElement = document.createElement("h1");
@@ -115,17 +125,13 @@ function capturePage() {
     newDoc.appendChild(article);
   }
 
-  return generateMarkdown(newDoc);
+  const text = generateMarkdown(newDoc);
+  const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+  downloadBlob(blob);
 }
 
 runtime.onMessage.addListener((data) => {
   if (data.action === "capturePage") {
-    const markdown = capturePage();
-    return runtime
-      .sendMessage({
-        action: "saveAs",
-        text: markdown,
-      })
-      .catch((err) => console.error("Failed to send 'saveAs' message", err));
+    capturePage();
   }
 });
