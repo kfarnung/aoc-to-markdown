@@ -1,5 +1,4 @@
 import {
-  downloads,
   runtime,
   pageAction,
   tabs as _tabs,
