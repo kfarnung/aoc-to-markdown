@@ -26,6 +26,5 @@
       "128": "icons/aoc-to-markdown-128.png"
     },
     "default_title": "Advent of Code to Markdown"
-  },
-  "permissions": ["downloads"]
+  }
 }
