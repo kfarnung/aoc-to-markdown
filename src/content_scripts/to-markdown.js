@@ -79,6 +79,16 @@ function expandHrefs(article) {
   }
 }
 
+function downloadBlob(blob) {
+  const downloadLink = document.createElement('a');
+  downloadLink.href = URL.createObjectURL(blob);
+  downloadLink.download = 'README.md';
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+  URL.revokeObjectURL(downloadLink.href);
+}
+
 function capturePage() {
   const newDoc = document.createDocumentFragment();
   const titleElement = document.createElement("h1");
@@ -116,20 +126,12 @@ function capturePage() {
   }
 
   const text = generateMarkdown(newDoc);
-  return new Blob([text], { type: "text/markdown;charset=utf-8" });
+  const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+  downloadBlob(blob);
 }
 
 runtime.onMessage.addListener((data) => {
   if (data.action === "capturePage") {
-    const blob = capturePage();
-
-    // Create a link element to trigger the download
-    const downloadLink = document.createElement('a');
-    downloadLink.href = URL.createObjectURL(blob);
-    downloadLink.download = 'README.md';
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
-    URL.revokeObjectURL(downloadLink.href);
+    capturePage();
   }
 });
