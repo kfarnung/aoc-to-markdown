@@ -7,7 +7,7 @@
     "build": "npm run compile && web-ext build -n aoc-to-markdown-addon.zip -s addon --overwrite-dest",
     "compile": "npm run genmanifest && webpack",
     "genmanifest": "node ./tools/genmanifest.js ./src/manifest.json ./addon/manifest.json",
-    "lint": "eslint . && web-ext lint -s addon",
+    "lint": "eslint . && npm run compile && web-ext lint -s addon",
     "lint-fix": "eslint . --fix",
     "prepare": "npm run compile",
     "prestart": "npm run compile",
