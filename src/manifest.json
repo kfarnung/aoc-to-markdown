@@ -14,8 +14,12 @@
   },
   "content_scripts": [
     {
-      "js": ["/content_scripts/index.js"],
-      "matches": ["*://adventofcode.com/*/day/*"]
+      "js": [
+        "/content_scripts/index.js"
+      ],
+      "matches": [
+        "*://adventofcode.com/*/day/*"
+      ]
     }
   ],
   "action": {
@@ -26,5 +30,10 @@
       "128": "icons/aoc-to-markdown-128.png"
     },
     "default_title": "Advent of Code to Markdown"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{9255ec71-5fba-48c8-9d40-0ae6ef3d6fb3}"
+    }
   }
 }

@@ -10,7 +10,7 @@
     "compile": "webpack && npm run genmanifest && npm run copyicons",
     "copyicons": "node ./tools/copyicons.js",
     "genmanifest": "node ./tools/genmanifest.js",
-    "lint": "eslint . && npm run compile && web-ext lint -s addon",
+    "lint": "eslint . && npm run compile && web-ext lint -s addon/firefox",
     "lint-fix": "eslint . --fix",
     "prepare": "npm run compile",
     "prestart": "npm run compile",
