@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 18.x
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v1
         with:
-          node-version: 18.x
+          node-version: 20.x
       - run: npm ci
       - run: npm run lint
       - run: npm run build
@@ -27,12 +27,21 @@ jobs:
           release_name: Advent of Code to Markdown ${{ github.ref }}
           draft: false
           prerelease: false
-      - name: Upload Release Asset
+      - name: Upload Release Asset - Chrome
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./web-ext-artifacts/aoc-to-markdown-addon.zip
-          asset_name: aoc-to-markdown-addon-${{ github.ref }}.zip
+          asset_path: ./web-ext-artifacts/aoc-to-markdown-chrome.zip
+          asset_name: aoc-to-markdown-chrome-${{ github.ref }}.zip
+          asset_content_type: application/zip
+      - name: Upload Release Asset - Firefox
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./web-ext-artifacts/aoc-to-markdown-firefox.zip
+          asset_name: aoc-to-markdown-firefox-${{ github.ref }}.zip
           asset_content_type: application/zip
