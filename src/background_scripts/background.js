@@ -20,6 +20,10 @@ runtime.onInstalled.addListener(() => {
   action.disable();
 });
 
+runtime.onStartup.addListener(() => {
+  action.disable();
+});
+
 action.onClicked.addListener(() => {
   _tabs
     .query({ active: true, currentWindow: true })
