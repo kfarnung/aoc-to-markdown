@@ -1,6 +1,6 @@
 {
   "name": "aoc-to-markdown",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Converts a given Advent of Code page to a GitHub-compatible Markdown file.",
   "repository": "github:kfarnung/aoc-to-markdown",
   "scripts": {
