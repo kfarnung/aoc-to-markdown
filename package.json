@@ -21,11 +21,12 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^8.4.0",
-    "web-ext": "^8.10.0",
-    "webextension-polyfill": "^0.10.0",
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0",
+    "web-ext": "^9.2.0",
+    "webextension-polyfill": "^0.12.0",
     "webpack": "^5.94.0",
-    "webpack-cli": "^5.0.0"
+    "webpack-cli": "^6.0.1"
   },
   "dependencies": {
     "turndown": "^7.1.1",
