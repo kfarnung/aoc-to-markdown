@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Install [Node 20+](https://nodejs.org/en/download/)
+- Install [Node 20.19+](https://nodejs.org/en/download/)
 
 ## Build
 

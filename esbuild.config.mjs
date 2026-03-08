@@ -34,8 +34,8 @@ await Promise.all(
     esbuild.build({
       entryPoints: {
         [`${browser}/background_scripts/index`]:
-          "./src/background_scripts/index.js",
-        [`${browser}/content_scripts/index`]: "./src/content_scripts/index.js",
+          "./src/background_scripts/index.ts",
+        [`${browser}/content_scripts/index`]: "./src/content_scripts/index.ts",
       },
       bundle: true,
       outdir: "addon",
