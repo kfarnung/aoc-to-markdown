@@ -19,12 +19,12 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "devDependencies": {
     "esbuild": "^0.27.3",
-    "eslint": "^9.39.1",
-    "globals": "^16.5.0",
+    "eslint": "^10.0.3",
+    "globals": "^17.4.0",
     "web-ext": "^9.2.0",
     "webextension-polyfill": "^0.12.0"
   },
