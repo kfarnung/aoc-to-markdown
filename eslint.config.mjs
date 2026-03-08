@@ -2,7 +2,7 @@ import globals from "globals";
 
 export default [
   {
-    ignores: ["addon/**/*.js"],
+    ignores: ["addon/**/*.js", "esbuild.config.mjs"],
   },
   {
     languageOptions: {

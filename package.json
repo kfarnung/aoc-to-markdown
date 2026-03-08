@@ -7,7 +7,7 @@
     "build": "npm run compile && npm run build-chrome && npm run build-firefox",
     "build-chrome": "web-ext build -n aoc-to-markdown-chrome.zip -s addon/chrome --overwrite-dest",
     "build-firefox": "web-ext build -n aoc-to-markdown-firefox.zip -s addon/firefox --overwrite-dest",
-    "compile": "webpack && npm run genmanifest && npm run copyicons",
+    "compile": "node esbuild.config.mjs && npm run genmanifest && npm run copyicons",
     "copyicons": "node ./tools/copyicons.js",
     "genmanifest": "node ./tools/genmanifest.js",
     "lint": "eslint . && npm run compile && web-ext lint -s addon/firefox",
@@ -21,12 +21,11 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "esbuild": "^0.27.3",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
     "web-ext": "^9.2.0",
-    "webextension-polyfill": "^0.12.0",
-    "webpack": "^5.105.0",
-    "webpack-cli": "^6.0.1"
+    "webextension-polyfill": "^0.12.0"
   },
   "dependencies": {
     "turndown": "^7.1.1",
