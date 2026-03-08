@@ -29,19 +29,23 @@ function copyIcons(browser) {
 
 const browsers = ["chrome", "firefox"];
 
-for (const browser of browsers) {
-  await esbuild.build({
-    entryPoints: {
-      [`${browser}/background_scripts/index`]:
-        "./src/background_scripts/index.js",
-      [`${browser}/content_scripts/index`]: "./src/content_scripts/index.js",
-    },
-    bundle: true,
-    outdir: "addon",
-    minify: false,
-    format: "iife",
-  });
+await Promise.all(
+  browsers.map((browser) =>
+    esbuild.build({
+      entryPoints: {
+        [`${browser}/background_scripts/index`]:
+          "./src/background_scripts/index.js",
+        [`${browser}/content_scripts/index`]: "./src/content_scripts/index.js",
+      },
+      bundle: true,
+      outdir: "addon",
+      minify: false,
+      format: "iife",
+    })
+  )
+);
 
+for (const browser of browsers) {
   generateManifest(browser);
   copyIcons(browser);
 }
