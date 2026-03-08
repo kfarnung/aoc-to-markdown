@@ -6,7 +6,7 @@ for (const browser of browsers) {
   await esbuild.build({
     entryPoints: {
       [`${browser}/background_scripts/index`]:
-        "./src/background_scripts/background.js",
+        "./src/background_scripts/index.js",
       [`${browser}/content_scripts/index`]: "./src/content_scripts/index.js",
     },
     bundle: true,
