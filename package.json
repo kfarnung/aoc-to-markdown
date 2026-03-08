@@ -14,8 +14,7 @@
     "prestart": "npm run compile",
     "pretest": "npm run compile",
     "start": "web-ext run -s ./addon/firefox",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "version": "npm run compile"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
   "engines": {
