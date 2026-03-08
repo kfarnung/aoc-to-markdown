@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Install [Node 14](https://nodejs.org/en/download/)
+- Install [Node 18+](https://nodejs.org/en/download/)
 
 ## Build
 

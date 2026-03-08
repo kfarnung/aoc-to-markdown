@@ -18,6 +18,9 @@
     "version": "npm run compile"
   },
   "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
   "devDependencies": {
     "esbuild": "^0.27.3",
     "eslint": "^9.39.1",
