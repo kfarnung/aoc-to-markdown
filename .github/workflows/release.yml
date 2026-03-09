@@ -8,40 +8,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Use Node.js 24.x
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 24.x
       - run: npm ci
       - run: npm run lint
       - run: npm run build
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+        run: |
+          mv ./web-ext-artifacts/aoc-to-markdown-chrome.zip ./web-ext-artifacts/aoc-to-markdown-chrome-${{ github.ref_name }}.zip
+          mv ./web-ext-artifacts/aoc-to-markdown-firefox.zip ./web-ext-artifacts/aoc-to-markdown-firefox-${{ github.ref_name }}.zip
+          gh release create ${{ github.ref_name }} \
+            --title "Advent of Code to Markdown ${{ github.ref_name }}" \
+            ./web-ext-artifacts/aoc-to-markdown-chrome-${{ github.ref_name }}.zip \
+            ./web-ext-artifacts/aoc-to-markdown-firefox-${{ github.ref_name }}.zip
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Advent of Code to Markdown ${{ github.ref }}
-          draft: false
-          prerelease: false
-      - name: Upload Release Asset - Chrome
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./web-ext-artifacts/aoc-to-markdown-chrome.zip
-          asset_name: aoc-to-markdown-chrome-${{ github.ref }}.zip
-          asset_content_type: application/zip
-      - name: Upload Release Asset - Firefox
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./web-ext-artifacts/aoc-to-markdown-firefox.zip
-          asset_name: aoc-to-markdown-firefox-${{ github.ref }}.zip
-          asset_content_type: application/zip
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
