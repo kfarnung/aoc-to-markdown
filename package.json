@@ -8,13 +8,14 @@
     "build-chrome": "web-ext build -n aoc-to-markdown-chrome.zip -s addon/chrome --overwrite-dest",
     "build-firefox": "web-ext build -n aoc-to-markdown-firefox.zip -s addon/firefox --overwrite-dest",
     "compile": "node esbuild.config.mjs",
-    "lint": "eslint . && npm run compile && web-ext lint -s addon/firefox",
+    "lint": "eslint . && npm run typecheck && npm run compile && web-ext lint -s addon/firefox",
     "lint-fix": "eslint . --fix",
     "prepare": "npm run compile",
     "prestart": "npm run compile",
     "pretest": "npm run compile",
     "start": "web-ext run -s ./addon/firefox",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc -p tsconfig.json"
   },
   "license": "MIT",
   "engines": {

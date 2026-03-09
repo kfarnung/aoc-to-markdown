@@ -1,2 +1,2 @@
-import "./on-loaded.js";
-import "./to-markdown.js";
+import "./on-loaded";
+import "./to-markdown";
