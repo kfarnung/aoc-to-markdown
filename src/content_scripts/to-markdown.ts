@@ -5,14 +5,14 @@ import TurndownService from "turndown";
 const descriptionTitle = "Description";
 const partOneHeadingTitle = "Part One";
 
-function stripHyphens(str) {
+function stripHyphens(str: string): string {
   const regex = /^--- (.+) ---$/;
-  return str.replace(regex, (_match, p1) => {
+  return str.replace(regex, (_match, p1: string) => {
     return p1;
   });
 }
 
-function generateMarkdown(doc) {
+function generateMarkdown(doc: DocumentFragment): string {
   const turndownService = new TurndownService({
     headingStyle: "atx",
   });
@@ -35,8 +35,10 @@ function generateMarkdown(doc) {
     filter: (node) =>
       node.nodeName == "CODE" &&
       node.childNodes.length == 1 &&
+      node.firstChild !== null &&
       node.firstChild.nodeName == "EM" &&
       node.firstChild.childNodes.length == 1 &&
+      node.firstChild.firstChild !== null &&
       node.firstChild.firstChild.nodeType == Node.TEXT_NODE,
     replacement: (_content, node, options) =>
       `${options.emDelimiter}\`${node.innerText}\`${options.emDelimiter}`,
@@ -57,7 +59,7 @@ function generateMarkdown(doc) {
   // where the previous code did not make a modification.
   turndownService.addRule("emphasisWithinCode", {
     filter: (node) =>
-      node.nodeName == "EM" && node.parentNode.nodeName == "CODE",
+      node.nodeName == "EM" && node.parentNode !== null && node.parentNode.nodeName == "CODE",
     replacement: (content) => content,
   });
 
@@ -68,7 +70,7 @@ function generateMarkdown(doc) {
   return turndownService.turndown(doc).concat("\n");
 }
 
-function expandHrefs(article) {
+function expandHrefs(article: HTMLElement): void {
   const articleLinks = article.querySelectorAll("a");
   for (const link of articleLinks) {
     if (link.href) {
@@ -79,7 +81,7 @@ function expandHrefs(article) {
   }
 }
 
-function downloadBlob(blob) {
+function downloadBlob(blob: Blob): void {
   const downloadLink = document.createElement('a');
   downloadLink.href = URL.createObjectURL(blob);
   downloadLink.download = 'README.md';
@@ -89,7 +91,7 @@ function downloadBlob(blob) {
   URL.revokeObjectURL(downloadLink.href);
 }
 
-function capturePage() {
+function capturePage(): void {
   const newDoc = document.createDocumentFragment();
   const titleElement = document.createElement("h1");
   newDoc.appendChild(titleElement);
@@ -107,9 +109,11 @@ function capturePage() {
   const articleElements = document.querySelectorAll("article");
   const articleElementsLength = articleElements.length;
   for (let index = 0; index < articleElementsLength; ++index) {
-    const article = articleElements[index].cloneNode(true);
+    const article = articleElements[index].cloneNode(true) as HTMLElement;
 
     const headingElement = article.querySelector("h2");
+    if (!headingElement) continue;
+
     let heading = stripHyphens(headingElement.innerText);
 
     if (index === 0) {
@@ -130,8 +134,13 @@ function capturePage() {
   downloadBlob(blob);
 }
 
-runtime.onMessage.addListener((data) => {
-  if (data.action === "capturePage") {
+interface ExtensionMessage {
+  action: string;
+}
+
+runtime.onMessage.addListener((data: unknown) => {
+  const message = data as ExtensionMessage;
+  if (message.action === "capturePage") {
     capturePage();
   }
 });

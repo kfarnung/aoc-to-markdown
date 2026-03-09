@@ -1,7 +1,7 @@
 import { runtime } from "webextension-polyfill";
 
 function showPageAction() {
-  runtime.sendMessage({ action: "showPageAction" }).catch((err) => {
+  runtime.sendMessage({ action: "showPageAction" }).catch((err: unknown) => {
     console.error("Failed to send 'showPageAction' message", err);
   });
 }
