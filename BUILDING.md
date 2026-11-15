@@ -2,7 +2,8 @@
 
 ## Prerequisites
 
-- Install [Node 20.19+](https://nodejs.org/en/download/)
+- Install [Node.js](https://nodejs.org/en/download/) 22.13.0 or later in the 22.x
+  series, or any 24.x or 26.x release.
 
 ## Build
 
