@@ -26,10 +26,10 @@
     "@types/webextension-polyfill": "^0.12.5",
     "@typescript/native": "npm:typescript@^7.0.2",
     "esbuild": "^0.28.1",
-    "eslint": "^10.8.0",
+    "eslint": "^10.15.0",
     "globals": "^17.8.0",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.65.0",
+    "typescript-eslint": "^8.72.2",
     "web-ext": "^10.8.0",
     "webextension-polyfill": "^0.12.0"
   },
