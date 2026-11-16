@@ -14,7 +14,7 @@
     "prestart": "npm run compile",
     "pretest": "npm run compile",
     "start": "web-ext run -s ./addon/firefox",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run --environment happy-dom",
     "typecheck": "tsc -p tsconfig.json"
   },
   "license": "MIT",
@@ -28,8 +28,10 @@
     "esbuild": "^0.28.1",
     "eslint": "^10.15.0",
     "globals": "^17.8.0",
+    "happy-dom": "^21.0.4",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.72.2",
+    "vitest": "^5.1.0",
     "web-ext": "^10.8.0",
     "webextension-polyfill": "^0.12.0"
   },

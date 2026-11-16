@@ -27,6 +27,13 @@ function copyIcons(browser) {
   }
 }
 
+function copyOptions(browser) {
+  const dest = `addon/${browser}/options`;
+  mkdirSync(dest, { recursive: true });
+  copyFileSync("src/options/index.html", `${dest}/index.html`);
+  copyFileSync("src/options/styles.css", `${dest}/styles.css`);
+}
+
 const browsers = ["chrome", "firefox"];
 
 await Promise.all(
@@ -36,6 +43,7 @@ await Promise.all(
         [`${browser}/background_scripts/index`]:
           "./src/background_scripts/index.ts",
         [`${browser}/content_scripts/index`]: "./src/content_scripts/index.ts",
+        [`${browser}/options/index`]: "./src/options/index.ts",
       },
       bundle: true,
       outdir: "addon",
@@ -48,6 +56,7 @@ await Promise.all(
 for (const browser of browsers) {
   generateManifest(browser);
   copyIcons(browser);
+  copyOptions(browser);
 }
 
 console.log("Build complete");

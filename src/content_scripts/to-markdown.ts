@@ -1,6 +1,7 @@
 import { runtime } from "webextension-polyfill";
 import { gfm } from "turndown-plugin-gfm";
 import TurndownService from "turndown";
+import { getIncludeAnswers } from "../settings";
 
 const descriptionTitle = "Description";
 const partOneHeadingTitle = "Part One";
@@ -91,7 +92,7 @@ function downloadBlob(blob: Blob): void {
   URL.revokeObjectURL(downloadLink.href);
 }
 
-function capturePage(): void {
+export function createMarkdown(includeAnswers: boolean): string {
   const newDoc = document.createDocumentFragment();
   const titleElement = document.createElement("h1");
   newDoc.appendChild(titleElement);
@@ -127,9 +128,32 @@ function capturePage(): void {
 
     expandHrefs(article);
     newDoc.appendChild(article);
+
+    if (includeAnswers) {
+      const answer = articleElements[index].nextElementSibling;
+      if (
+        answer?.matches("p") &&
+        answer.textContent?.trimStart().startsWith("Your puzzle answer was ") &&
+        answer.querySelector(":scope > code")
+      ) {
+        newDoc.appendChild(answer.cloneNode(true));
+      }
+    }
   }
 
-  const text = generateMarkdown(newDoc);
+  return generateMarkdown(newDoc);
+}
+
+export async function capturePage(): Promise<void> {
+  let includeAnswers = false;
+  try {
+    includeAnswers = await getIncludeAnswers();
+  } catch (error) {
+    console.error("Failed to load answer export setting", error);
+    window.alert("Could not load settings. Downloading without puzzle answers.");
+  }
+
+  const text = createMarkdown(includeAnswers);
   const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
   downloadBlob(blob);
 }
@@ -141,6 +165,8 @@ interface ExtensionMessage {
 runtime.onMessage.addListener((data: unknown) => {
   const message = data as ExtensionMessage;
   if (message.action === "capturePage") {
-    capturePage();
+    void capturePage().catch((error: unknown) => {
+      console.error("Failed to capture page", error);
+    });
   }
 });

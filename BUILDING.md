@@ -27,6 +27,10 @@ fixes.
 
 ## Test
 
+- Run `npm test` for automated tests.
+
+### Manual testing
+
 ### Firefox
 
 - `npm start`
