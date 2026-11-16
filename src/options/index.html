@@ -3,16 +3,51 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Advent of Code to Markdown settings</title>
+  <meta name="color-scheme" content="dark">
+  <title>Settings - Advent of Code to Markdown</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main>
-    <h1>Advent of Code to Markdown settings</h1>
-    <label>
-      <input id="include-answers" type="checkbox" disabled>
-      Include puzzle answers in exported Markdown
-    </label>
-    <p id="status" role="status" aria-live="polite"></p>
+  <main class="settings">
+    <header class="masthead">
+      <span class="masthead__mark" aria-hidden="true">*</span>
+      <span class="masthead__name">Advent of Code</span>
+      <span class="masthead__separator" aria-hidden="true">/</span>
+      <span class="masthead__product">Markdown Export</span>
+    </header>
+
+    <section class="panel" aria-labelledby="page-title">
+      <p class="eyebrow">EXTENSION SETTINGS</p>
+      <h1 id="page-title">Export preferences</h1>
+      <p class="intro">Make your puzzle write-ups a little more complete.</p>
+
+      <div class="setting">
+        <div class="setting__copy">
+          <label class="setting__title" for="include-answers">Include puzzle answers</label>
+          <p class="setting__description">
+            Add each solved answer below its puzzle part in the exported Markdown.
+          </p>
+        </div>
+        <label class="toggle" aria-label="Include puzzle answers in exported Markdown">
+          <input id="include-answers" type="checkbox" role="switch" disabled>
+          <span class="toggle__track" aria-hidden="true">
+            <span class="toggle__thumb"></span>
+          </span>
+        </label>
+      </div>
+
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+    </section>
+
+    <p class="footnote">
+      <span class="footnote__mark" aria-hidden="true">i</span>
+      Answers are only added to your download. They are never saved by the extension.
+    </p>
+
+    <footer class="footer">
+      <p>Right-click the extension icon and choose <strong>Settings...</strong> to come back here.</p>
+      <p>Preferences sync through your browser account when sync is enabled.</p>
+    </footer>
   </main>
   <script src="index.js"></script>
 </body>

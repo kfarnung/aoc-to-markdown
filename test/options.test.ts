@@ -46,7 +46,7 @@ describe("options", () => {
     expect(checkbox.disabled).toBe(true);
     await vi.waitFor(() => expect(checkbox.disabled).toBe(false));
     expect(mocks.set).toHaveBeenCalledWith({ includeAnswers: false });
-    expect(status.textContent).toBe("Settings saved.");
+    expect(status.textContent).toBe("Preference saved.");
   });
 
   it("reports load failures without enabling the checkbox", async () => {

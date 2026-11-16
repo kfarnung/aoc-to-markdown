@@ -7,29 +7,38 @@ if (!checkbox || !status) {
   throw new Error("Missing settings controls");
 }
 
+function updateStatus(message: string, state: "success" | "error" | "pending" | ""): void {
+  status!.textContent = message;
+  if (state) {
+    status!.dataset.state = state;
+  } else {
+    delete status!.dataset.state;
+  }
+}
+
 async function initialize(): Promise<void> {
   try {
     checkbox!.checked = await getIncludeAnswers();
     checkbox!.disabled = false;
   } catch (error) {
     console.error("Failed to load settings", error);
-    status!.textContent = "Could not load settings. Reload this page to try again.";
+    updateStatus("Could not load settings. Reload this page to try again.", "error");
   }
 }
 
 checkbox.addEventListener("change", () => {
   const selected = checkbox.checked;
   checkbox.disabled = true;
-  status.textContent = "Saving...";
+  updateStatus("Saving your preference...", "pending");
 
   void setIncludeAnswers(selected)
     .then(() => {
-      status.textContent = "Settings saved.";
+      updateStatus("Preference saved.", "success");
     })
     .catch((error: unknown) => {
       console.error("Failed to save settings", error);
       checkbox.checked = !selected;
-      status.textContent = "Could not save settings. Please try again.";
+      updateStatus("Could not save your preference. Please try again.", "error");
     })
     .finally(() => {
       checkbox.disabled = false;

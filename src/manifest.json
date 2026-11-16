@@ -3,7 +3,7 @@
   "name": "Advent of Code to Markdown",
   "version": null,
   "description": "Converts a given Advent of Code page to a GitHub-compatible Markdown file.",
-  "permissions": ["storage"],
+  "permissions": ["contextMenus", "storage"],
   "options_ui": {
     "page": "options/index.html",
     "open_in_tab": true
@@ -34,7 +34,7 @@
       "48": "icons/aoc-to-markdown-48.png",
       "128": "icons/aoc-to-markdown-128.png"
     },
-    "default_title": "Advent of Code to Markdown"
+    "default_title": "Click to download Markdown; right-click for settings"
   },
   "browser_specific_settings": {
     "gecko": {

@@ -31,6 +31,7 @@ function copyOptions(browser) {
   const dest = `addon/${browser}/options`;
   mkdirSync(dest, { recursive: true });
   copyFileSync("src/options/index.html", `${dest}/index.html`);
+  copyFileSync("src/options/styles.css", `${dest}/styles.css`);
 }
 
 const browsers = ["chrome", "firefox"];
